@@ -6,20 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://baili90.github.io">
-  <title>好奇心与生活</title>
+  <title>如何实现Mysql的自动备份 | 好奇心与生活</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-    
-    <!-- <meta name="keywords" content="">
-    <meta name="description" content=""> -->
-  
-  <meta property="og:type" content="website">
-<meta property="og:title" content="好奇心与生活">
-<meta property="og:url" content="https://baili90.github.io/page/3/index.html">
+  <meta name="description" content="用mysqldump + crontabs实现自动备份。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何实现Mysql的自动备份">
+<meta property="og:url" content="https://baili90.github.io/2022/01/18/2022-01-18-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0Mysql%E7%9A%84%E8%87%AA%E5%8A%A8%E5%A4%87%E4%BB%BD/index.html">
 <meta property="og:site_name" content="好奇心与生活">
+<meta property="og:description" content="用mysqldump + crontabs实现自动备份。">
 <meta property="og:locale">
+<meta property="article:published_time" content="2022-01-18T10:20:20.000Z">
+<meta property="article:modified_time" content="2022-01-18T10:05:43.077Z">
 <meta property="article:author" content="Baili">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Mysql">
 <meta name="twitter:card" content="summary">
   
   
@@ -202,134 +204,124 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-
-  
-    <article id="post-2020-04-22-ssl" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+             <article id="post-2022-01-18-如何实现Mysql的自动备份" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/04/02/2020-04-22-ssl/">SSL证书配置</a>
-	
+    <h1 class="article-title" itemprop="name">
+      如何实现Mysql的自动备份
     </h1>
   
 
 
   
   
-<a href="/2020/04/02/2020-04-22-ssl/" class="archive-article-date">
-        <time datetime="2020-04-02T14:09:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-02</time>
+<a href="/2022/01/18/2022-01-18-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0Mysql%E7%9A%84%E8%87%AA%E5%8A%A8%E5%A4%87%E4%BB%BD/" class="archive-article-date">
+        <time datetime="2022-01-18T10:20:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-18</time>
 </a>
 
   
   
     
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">385字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">1分</span>
+    </span>
+  </span>
+</div>
+
 
   
   </header>
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>博主在阿里云申请的免费证书，大致是参照配置文档的，但中间出了几个小差错，故将完整流程记录如下～</p>
-    
-    <a class="article-more-a" href="/2020/04/02/2020-04-22-ssl/#more">more >></a>
-    
-    
+    <p>用mysqldump + crontabs实现自动备份。</p>
+<span id="more"></span>
+
+<h3 id="一、备份命令"><a href="#一、备份命令" class="headerlink" title="一、备份命令"></a>一、备份命令</h3><p>首先，看下备份时需要输入什么。</p>
+<p>以mysql数据库为例 (一个空格都不要错)，输入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -uroot -p mysql &gt; /root/mysql.`date +%Y-%m-%d`.dump</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>解释下上面命令的各项分解：</p>
+<p>mysqldump ：上述生成的mysqldump链接文件，mysql自带工具<br>-uroot：-u + 数据库用户名<br>-proot：-p + 数据库密码<br>mysql：需要导出的数据库名，个人比较喜欢分别导出，一次性导出恢复比较麻烦</p>
+<p><code>date +%Y-%m-%d  </code> :日期</p>
+<p>/root：生成sql文件位置</p>
+<h3 id="二、编写脚本"><a href="#二、编写脚本" class="headerlink" title="二、编写脚本"></a>二、编写脚本</h3><p>我们把上面的命令行写成一个脚本，那每次执行脚本就相当于执行命令了。</p>
+<p>此处我在 opt 目录下创建一个 backup.sh 脚本</p>
+<blockquote>
+<p>vi /opt/backup.sh</p>
+</blockquote>
+<p>本地备份，简单点直接导出sql就行了。</p>
+<p>将要执行的命令保存好，多个数据库的导出用多个命令，必须用 ; 分号结尾，不然生成文件出错</p>
+<blockquote>
+<p>mysqldump -uroot -proot  test | gzip &gt; /opt/test.sql.gz;<br>mysqldump -uroot -proot  test2 | gzip &gt; /opt/test2.sql.gz;</p>
+</blockquote>
+<p>保存好后可以执行下试试，若存在权限问题，则设置下权限</p>
+<blockquote>
+<p>chmod -R 777 backup.sh</p>
+</blockquote>
+<h3 id="三、自动执行备份脚本"><a href="#三、自动执行备份脚本" class="headerlink" title="三、自动执行备份脚本"></a>三、自动执行备份脚本</h3><p>首先安装crontabs，启动</p>
+<blockquote>
+<p>yum install crontabs;<br>service crond start;</p>
+</blockquote>
+<p>然后设置需要执行的任务</p>
+<blockquote>
+<p>crontab -e</p>
+</blockquote>
+<p>例如每天凌晨3点执行备份命令，保存以下命令</p>
+<blockquote>
+<p>0 3 * * *  /opt/backup.sh</p>
+</blockquote>
+<p>完成！</p>
+<p>参考文档：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_46144826/article/details/105303135">https://blog.csdn.net/m0_46144826/article/details/105303135</a></li>
+</ol>
+<ol start="2">
+<li><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-crontab.html">https://www.runoob.com/linux/linux-comm-crontab.html</a></li>
+</ol>
 
     
 
     
 
-  </div>
-  <div class="article-info article-info-index">
     
-    
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术//" class="article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/04/02/2020-04-22-ssl/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          Baili
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://baili90.github.io/2022/01/18/2022-01-18-如何实现Mysql的自动备份/" title="如何实现Mysql的自动备份" target="_blank">https://baili90.github.io/2022/01/18/2022-01-18-如何实现Mysql的自动备份/</a>
+        </li>
         
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
+        <li>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
         
-        
+      </ul>
     </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2020-01-27-first_git_clone" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/01/27/2020-01-27-first_git_clone/">记录第一次成功git-clone的过程</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/01/27/2020-01-27-first_git_clone/" class="archive-article-date">
-        <time datetime="2020-01-26T16:15:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-27</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>一直以来我都无法使用github，这个也就算了，解决方法不难。可是很多远程操作都无法执行，实在忍不下去了，网上设置git代理的方法看起来有些散，就自己记录一下过程吧～</p>
-    
-    <a class="article-more-a" href="/2020/01/27/2020-01-27-first_git_clone/#more">more >></a>
-    
-    
-
-    
-
     
 
   </div>
@@ -341,7 +333,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Mysql</a>
         		</li>
       		
 		</ul>
@@ -361,16 +357,76 @@
 
 
     
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/01/27/2020-01-27-first_git_clone/">展开全文 >></a>
-    </p>
+
     
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://baili90.github.io/2022/01/18/2022-01-18-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0Mysql%E7%9A%84%E8%87%AA%E5%8A%A8%E5%A4%87%E4%BB%BD/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
 
     
     <div class="clearfix"></div>
   </div>
   </div>
 </article>
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2022/01/17/2022-01-17-%E8%A7%A3%E5%86%B3Hexo%20d%E6%97%A0%E6%A0%B7%E5%BC%8F%E9%97%AE%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">解决Hexo d无样式问题</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -385,18 +441,34 @@
         </div>
         
         
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%A4%87%E4%BB%BD%E5%91%BD%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">一、备份命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%BC%96%E5%86%99%E8%84%9A%E6%9C%AC"><span class="toc-number">2.</span> <span class="toc-text">二、编写脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E8%87%AA%E5%8A%A8%E6%89%A7%E8%A1%8C%E5%A4%87%E4%BB%BD%E8%84%9A%E6%9C%AC"><span class="toc-number">3.</span> <span class="toc-text">三、自动执行备份脚本</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
     </div>
 </aside>
 
 
 
 
-  
-  
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
-    </nav>
-  
+
+
+
+
+
+
+
+
+
 
 
           </div>
@@ -424,8 +496,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
