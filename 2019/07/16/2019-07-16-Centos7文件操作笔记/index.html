@@ -6,21 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://baili90.github.io">
-  <title>记录第一次成功git-clone的过程 | 好奇心与生活</title>
+  <title>Centos7文件操作笔记 | 好奇心与生活</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="一直以来我都无法使用github，这个也就算了，解决方法不难。可是很多远程操作都无法执行，实在忍不下去了，网上设置git代理的方法看起来有些散，就自己记录一下过程吧～">
+  <meta name="description" content="Centos7文件操作笔记前言：由于对linux命令不甚熟悉，每次都是需要哪个操作就临时查找命令，故整理如下。备注：$符号为可输入命令 1.SSH登录页面说明(以vlutr为例) 用SSH工具连接远程服务器登陆后，页面是这样：  【root@vultr ～】#   root意思是当前用户为系统管理员，～为用户家目录，由于不同用户家目录位置不同，所以在登录后可以使用$ pwd命令来查看当前目录：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="记录第一次成功git-clone的过程">
-<meta property="og:url" content="https://baili90.github.io/2020/01/27/2020-01-27-first_git_clone/index.html">
+<meta property="og:title" content="Centos7文件操作笔记">
+<meta property="og:url" content="https://baili90.github.io/2019/07/16/2019-07-16-Centos7%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="好奇心与生活">
-<meta property="og:description" content="一直以来我都无法使用github，这个也就算了，解决方法不难。可是很多远程操作都无法执行，实在忍不下去了，网上设置git代理的方法看起来有些散，就自己记录一下过程吧～">
+<meta property="og:description" content="Centos7文件操作笔记前言：由于对linux命令不甚熟悉，每次都是需要哪个操作就临时查找命令，故整理如下。备注：$符号为可输入命令 1.SSH登录页面说明(以vlutr为例) 用SSH工具连接远程服务器登陆后，页面是这样：  【root@vultr ～】#   root意思是当前用户为系统管理员，～为用户家目录，由于不同用户家目录位置不同，所以在登录后可以使用$ pwd命令来查看当前目录：">
 <meta property="og:locale">
-<meta property="article:published_time" content="2020-01-26T16:15:11.000Z">
-<meta property="article:modified_time" content="2021-05-31T15:26:22.019Z">
+<meta property="article:published_time" content="2019-07-16T03:15:11.000Z">
+<meta property="article:modified_time" content="2022-07-21T15:52:09.710Z">
 <meta property="article:author" content="Baili">
-<meta property="article:tag" content="git">
+<meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
   
   
@@ -203,22 +203,22 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-             <article id="post-2020-01-27-first_git_clone" class="article article-type-post " itemscope itemprop="blogPost">
+             <article id="post-2019-07-16-Centos7文件操作笔记" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      记录第一次成功git-clone的过程
+      Centos7文件操作笔记
     </h1>
   
 
 
   
   
-<a href="/2020/01/27/2020-01-27-first_git_clone/" class="archive-article-date">
-        <time datetime="2020-01-26T16:15:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-27</time>
+<a href="/2019/07/16/2019-07-16-Centos7%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+        <time datetime="2019-07-16T03:15:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-16</time>
 </a>
 
   
@@ -231,7 +231,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">383字</span>
+      <span class="post-count">297字</span>
     </span>
   </span>
 
@@ -251,35 +251,31 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>一直以来我都无法使用github，这个也就算了，解决方法不难。可是很多远程操作都无法执行，实在忍不下去了，网上设置git代理的方法看起来有些散，就自己记录一下过程吧～</p>
-<span id="more"></span>
+    <span id="more"></span>
 
-<p>1.查看localhost：<br>先吐槽一下这个<code>git config --global https.proxy http://127.0.0.1:1080</code>命令。<br>按照网上的资料还以为是需要代理服务器地址，后面才发现是要本机localhost。也怪我拿着就用，后面又折腾了好久如何取消。localhost可以用这个查看：</p>
+<h2 id="Centos7文件操作笔记"><a href="#Centos7文件操作笔记" class="headerlink" title="Centos7文件操作笔记"></a>Centos7文件操作笔记</h2><h4 id="前言：由于对linux命令不甚熟悉，每次都是需要哪个操作就临时查找命令，故整理如下。"><a href="#前言：由于对linux命令不甚熟悉，每次都是需要哪个操作就临时查找命令，故整理如下。" class="headerlink" title="前言：由于对linux命令不甚熟悉，每次都是需要哪个操作就临时查找命令，故整理如下。"></a>前言：由于对linux命令不甚熟悉，每次都是需要哪个操作就临时查找命令，故整理如下。</h4><p>备注：$符号为可输入命令</p>
+<p>1.SSH登录页面说明(以vlutr为例)</p>
+<p>用SSH工具连接远程服务器登陆后，页面是这样：</p>
 <blockquote>
-<p>$ nslookup localhost</p>
+<p>【root@vultr ～】# </p>
 </blockquote>
-<p>2.查看监听端口：<br>在代理软件上查看自己的本地监听端口,要注意的是，http代理要使用http的监听端口。</p>
-<p>3.配置git代理<br>这个时候可以使用你查到的localhost和端口来输入命令了，为了方便，也可以直接输入<code>local host:</code>后跟着你的端口号（下面<code>8001</code>是博主的端口号，不要照抄！）。</p>
+<p><code>root</code>意思是当前用户为系统管理员，<code>～</code>为用户家目录，由于不同用户家目录位置不同，所以在登录后可以使用<code>$ pwd</code>命令来查看当前目录：</p>
 <blockquote>
-<p>$ git config –global http.proxy “localhost:8001”</p>
+<p>【root@vultr ～】# pwd<br>【root@vultr ～】#<br>/root</p>
 </blockquote>
+<p>这个页面的意思是你以管理员身份进入了/root文件夹。<br>如果输入<code>cd /</code>才会进入根目录，显示如下：</p>
 <blockquote>
-<p>$ git config –global https.proxy “localhost:8001”</p>
+<p>【root@vultr ～】# cd /<br>【root@vultr /】# </p>
 </blockquote>
-<p>现在尝试<code>git clone</code>就能下载远程仓库了，终于成功，太感动了。<br>然后摸索了一下，发现不使用代理就无法使用<code>git clone</code>等操作，大概有了些推测但尚需深入学习，就不描述了。</p>
-<p>4.取消代理：</p>
+<p> 2.进入目标文件夹</p>
+<p>   此时已经明确自己的位置，再来了解绝对路径与相对路径。</p>
+<ul>
+<li>绝对路径：从根目录出发找到目标文件夹的路</li>
+<li>相对路径：从现在所处的位置到目标文件夹</li>
+</ul>
+<p>比如现在想到home文件夹里面的wwwroot文件夹，那么有两种方法。</p>
 <blockquote>
-<p>$ git config –global –unset http.proxy</p>
-</blockquote>
-<blockquote>
-<p>$   git config –global –unset https.proxy</p>
-</blockquote>
-<p>之前错误了输入了一些别的，取消：</p>
-<blockquote>
-<p>$  git config –global –unset https.<a target="_blank" rel="noopener" href="https://github.com.proxy/">https://github.com.proxy</a></p>
-</blockquote>
-<blockquote>
-<p>$ git config –global –unset http.<a target="_blank" rel="noopener" href="https://github.com.proxy/">https://github.com.proxy</a></p>
+<p>1.绝对路径：【root@vultr ～】# cd /home/wwwroot<br>2.相对路径：【root@vultr ～】# cd ../home/wwwroot</p>
 </blockquote>
 
     
@@ -295,7 +291,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://baili90.github.io/2020/01/27/2020-01-27-first_git_clone/" title="记录第一次成功git-clone的过程" target="_blank">https://baili90.github.io/2020/01/27/2020-01-27-first_git_clone/</a>
+          <a href="https://baili90.github.io/2019/07/16/2019-07-16-Centos7文件操作笔记/" title="Centos7文件操作笔记" target="_blank">https://baili90.github.io/2019/07/16/2019-07-16-Centos7文件操作笔记/</a>
         </li>
         
         <li>
@@ -317,7 +313,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
         		</li>
       		
 		</ul>
@@ -384,7 +380,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://baili90.github.io/2020/01/27/2020-01-27-first_git_clone/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://baili90.github.io/2019/07/16/2019-07-16-Centos7%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C%E7%AC%94%E8%AE%B0/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -399,20 +395,15 @@
 
 <nav id="article-nav">
   
-    <a href="/2020/04/02/2020-04-22-ssl/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/01/27/2020-01-27-first_git_clone/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          SSL证书配置
+          记录第一次成功git-clone的过程
         
       </div>
     </a>
   
-  
-    <a href="/2019/07/16/2019-07-16-Centos7%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C%E7%AC%94%E8%AE%B0/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Centos7文件操作笔记</div>
-      <i class="icon-circle-right"></i>
-    </a>
   
 </nav>
 
@@ -437,7 +428,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Centos7%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">Centos7文件操作笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%EF%BC%9A%E7%94%B1%E4%BA%8E%E5%AF%B9linux%E5%91%BD%E4%BB%A4%E4%B8%8D%E7%94%9A%E7%86%9F%E6%82%89%EF%BC%8C%E6%AF%8F%E6%AC%A1%E9%83%BD%E6%98%AF%E9%9C%80%E8%A6%81%E5%93%AA%E4%B8%AA%E6%93%8D%E4%BD%9C%E5%B0%B1%E4%B8%B4%E6%97%B6%E6%9F%A5%E6%89%BE%E5%91%BD%E4%BB%A4%EF%BC%8C%E6%95%85%E6%95%B4%E7%90%86%E5%A6%82%E4%B8%8B%E3%80%82"><span class="toc-number">1.0.1.</span> <span class="toc-text">前言：由于对linux命令不甚熟悉，每次都是需要哪个操作就临时查找命令，故整理如下。</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>

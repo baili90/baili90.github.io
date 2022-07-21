@@ -894,6 +894,115 @@
 
 
   
+    <article id="post-2022-01-10-PHP操作MinIO简记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2022/01/10/2022-01-10-PHP%E6%93%8D%E4%BD%9CMinIO%E7%AE%80%E8%AE%B0/">PHP操作minio简记</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2022/01/10/2022-01-10-PHP%E6%93%8D%E4%BD%9CMinIO%E7%AE%80%E8%AE%B0/" class="archive-article-date">
+        <time datetime="2022-01-10T14:09:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-10</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+
+<h3 id="一、安装composer"><a href="#一、安装composer" class="headerlink" title="一、安装composer"></a>一、安装composer</h3><p>Mac OS 系统可以使用以下命令来安装：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ curl -sS https://getcomposer.org/installer | php</span><br><span class="line">$ sudo mv composer.phar /usr/local/bin/composer</span><br><span class="line">$ composer --version</span><br><span class="line">Composer version 1.7.2 2018-08-16 16:57:12</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="二、安装aws-s3客户端sdk"><a href="#二、安装aws-s3客户端sdk" class="headerlink" title="二、安装aws s3客户端sdk"></a>二、安装aws s3客户端sdk</h4><blockquote>
+<p>composer require aws/aws-sdk-php</p>
+</blockquote>
+<h4 id="三、在文件中引入"><a href="#三、在文件中引入" class="headerlink" title="三、在文件中引入"></a>三、在文件中引入</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">   require &#x27;/path/to/vendor/autoload.php&#x27;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">后端</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术//" class="article-tag-list-link color3">技术</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2022/01/10/2022-01-10-PHP%E6%93%8D%E4%BD%9CMinIO%E7%AE%80%E8%AE%B0/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-2022-01-08-Hexo主题推荐" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1063,105 +1172,6 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/2022/01/07/2022-01-07-Hexo+Yilia%E7%9A%84%E5%BF%AB%E9%80%9F%E5%BA%94%E7%94%A8/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2022-01-05-从看书联想到的……" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/01/05/2022-01-05-%E4%BB%8E%E7%9C%8B%E4%B9%A6%E8%81%94%E6%83%B3%E5%88%B0%E7%9A%84%E2%80%A6%E2%80%A6/">从看书联想到的……</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2022/01/05/2022-01-05-%E4%BB%8E%E7%9C%8B%E4%B9%A6%E8%81%94%E6%83%B3%E5%88%B0%E7%9A%84%E2%80%A6%E2%80%A6/" class="archive-article-date">
-        <time datetime="2022-01-05T03:22:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-05</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>前言：有人喜欢歌舞，有人喜欢运动，有人喜欢看书……</p>
-    
-    <a class="article-more-a" href="/2022/01/05/2022-01-05-%E4%BB%8E%E7%9C%8B%E4%B9%A6%E8%81%94%E6%83%B3%E5%88%B0%E7%9A%84%E2%80%A6%E2%80%A6/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">阅读</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/随笔//" class="article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/01/05/2022-01-05-%E4%BB%8E%E7%9C%8B%E4%B9%A6%E8%81%94%E6%83%B3%E5%88%B0%E7%9A%84%E2%80%A6%E2%80%A6/">展开全文 >></a>
     </p>
     
 
